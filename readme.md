@@ -10,19 +10,14 @@ Install the required packages:
 pip install -r requirements.txt
 ```
 
-
-
 ## Directory Structure
 
 If you want to run the process step from original data, please download the relevant files and put them in `raw_files` folder
 
+
 ```tree
-|-- cache
-    |-- bert # for discriminator
-    |-- dev # for generator
-|-- code
 |-- data # processed json data and graph
-|-- output # output result for evalution
+|-- logs # some result in devloping
 |-- preprocess # process original data
 |-- raw_files
     |-- ConvAI2 # Raw data downloaded from https://parl.ai/projects/convai2/
@@ -42,20 +37,30 @@ If you want to run the process step from original data, please download the rele
     |-- glove.6B.300d.txt
 ```
 
-## Data Preparation
+<!--
+```tree
+|-- cache
+    |-- bert # for discriminator
+    |-- dev # for generator
+|-- code
+|-- output # output result for evalution
+```
+-->
+
+## Data Processing
 
 Execute the following commands step by step
 
 ```bash
 python preprocess/extract_english.py # extract english triple from conceptnet
 python preprocess/ground_concepts.py # Extract keywords/concepts/entities from the dialogue
-python preprocess/otter_reason.py # Constructing dialogue map for otters corpus
+python preprocess/otter_reason.py # Constructing dialogue map for otters corpus (global planning)
 python preprocess/tgconv_reason.py # Extract target-guided behavior(knowledge-based transition) data
 python preprocess/filter_embeding.py # Extract the word vectors
 ```
 
 The processed files are placed in the `data` folder
-
+<!--
 ## Training
 
 ### Stage 1 Learning
@@ -115,7 +120,7 @@ The best running results have been saved in the file `output/simulation_output.t
 python code/rl_test.py --target easy
 python code/rl_test.py --target hard
 ```
-
+-->
 ## Citation
 If you find our work useful for your research, please kindly cite our paper as follows:
 ```
